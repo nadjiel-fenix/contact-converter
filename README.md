@@ -3,10 +3,12 @@
 Este projeto é um conversor de dados de contatos exportados do [DropDesk](https://www.dropdesk.com.br/) `v2.28.14` para um formato aceito pelo [AtendeChat](https://atendechat.com/) `v6.0.0`.
 
 ## :wrench: Dependências
-Para utilizar o programa, você precisa do Python `v3.9.13` (outras versões devem funcionar, dependendo das mudanças).
+Para executar o programa, você precisa do Python `v3.9.13` (outras versões devem funcionar, dependendo das mudanças).
+
+Além disso, as demais dependências necessárias são listadas no arquivo `requirements.txt`, para conveniência na instalação com o Python.
 
 ## :grey_question: Utilização
-Para executar, na pasta onde você instalar o repositório, execute o seguinte comando:
+Para usar, na pasta onde você instalar o repositório, execute o seguinte comando:
 
 ``` bash
 python ./main.py <input_path> <output_path>
