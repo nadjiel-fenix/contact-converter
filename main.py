@@ -1,5 +1,7 @@
 import openpyxl
 import re
+import argparse
+from pathlib import Path
 
 
 def extract_phone(text: str) -> str:
@@ -29,6 +31,12 @@ def extract_phone(text: str) -> str:
 
 
 def convert(input_path: str, output_path: str):
+    """
+    Converte os dados do arquivo de contatos do DropDesk apontado
+    pelo input_path (.xlsx) para um novo arquivo no caminho output_path
+    com o formato dos dados esperados pelo AtendeChat (também .xlsx).
+    """
+
     # Carregar workbook do DropDesk.
     in_wb = openpyxl.load_workbook(input_path)
     # Carrega o worksheet padrão, que se
@@ -61,5 +69,28 @@ def convert(input_path: str, output_path: str):
     out_wb.save(output_path)
 
 
-# Conversão de arquivos padrões.
-convert(input_path="dropdesk_contacts.xlsx", output_path="atendechat_contacts.xlsx")
+def main() -> None:
+    """
+    Interpreta os argumentos e executa a conversão.
+    """
+
+    parser = argparse.ArgumentParser(
+        description="Converte contatos do DropDesk para o formato do AtendeChat."
+    )
+    parser.add_argument(
+        "input",
+        help="Caminho do arquivo de input com os contatos do DropDesk (.xlsx)",
+        type=Path,
+    )
+    parser.add_argument(
+        "output",
+        help="Caminho do arquivo onde salvar os contatos no formato do AtendeChat (.xlsx)",
+        type=Path,
+    )
+    args = parser.parse_args()
+
+    convert(args.input, args.output)
+
+
+if __name__ == "__main__":
+    main()
